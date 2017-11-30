@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="ISO-8859-1"> 
+<title>Play Your Hand</title> 
+</head> 
+<body> 
+
+ 
+<h1>Twenty-One</h1> 
+
+ 
+<h2>Player hand</h2> 
+{{#game.playah.cards}} 
+<div>{{ face }} of {{ suit }}</div> 
+{{/game.playah.cards}} 
+
+
+<h2>Dealer hand</h2> 
+{{#game.dealah.cards}} 
+<div>{{ face }} of {{ suit }}</div> 
+{{/game.dealah.cards}} 
+
+ 
+<form method="post" action="/hit"> 
+<button>Hit me</button> 
+</form> 
+<form method="post" action="/stand"> 
+<button>I'm good</button> 
+</form> 
+</body> 
+</html> 
