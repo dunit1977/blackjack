@@ -28,5 +28,9 @@ public class DealerHand {
 		return sum;
 	}
 
+	public int numberOfCards() {
+		return cards.size();
+	}
+	
 }
 

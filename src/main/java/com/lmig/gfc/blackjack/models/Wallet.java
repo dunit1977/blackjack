@@ -2,17 +2,34 @@ package com.lmig.gfc.blackjack.models;
 
 public class Wallet {
 
-	private int wallet; 
+	private int dollars; 
 	
 	public Wallet(int wallet) {
-	this.wallet = wallet;
+		this.dollars = wallet;
 	}
 	
-	public boolean isEmpty() {
-		if(wallet == 0) {
+	public boolean isWalletEmpty() {
+		if(dollars == 0) {
 			return true;
 		}
 		return false;
+	}
+
+	public int getDollars() {
+		return dollars;
+	}
+
+	public void minusBet(int bet) {
+		dollars = dollars - bet;
+	}
+	
+	public void blackJackPayout (int bet) {
+		Double amountToAdd = bet * 2.5;
+		dollars = dollars + amountToAdd.intValue();
+	}
+	
+	public void regularwinPayout (int bet) {
+		dollars = dollars + (bet * 2);
 	}
 	
 //	public int updateWallet(int bet, int wallet, String gameisOver) {
@@ -23,13 +40,7 @@ public class Wallet {
 		
 //	}
 	
-	public int getWallet() {
-		return wallet;
-	}
 
-	public void setWallet(int wallet) {
-		this.wallet = wallet;
-	}
 	
 }
 

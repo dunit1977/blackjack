@@ -7,14 +7,15 @@
 <body> 
 
  
-<h1>Twenty-One</h1> 
+<h1>Blackjack</h1> 
 
+<div>You have ${{ game.wallet.dollars }}</div>
+<div>The current bet is ${{ game.currentBet.amount }}</div>
  
 <h2>Player hand</h2> 
 {{#game.playah.cards}} 
-<div>{{ face }} of {{ suit }}</div> 
+<div>{{ face }} of {{ suit }}</div>
 {{/game.playah.cards}} 
-
 
 <h2>Dealer hand</h2> 
 {{#game.dealah.cards}} 
@@ -27,6 +28,15 @@
 </form> 
 <form method="post" action="/stand"> 
 <button>I'm good</button> 
+
+
+
+
+
+
+
+
+
 </form> 
 </body> 
 </html> 

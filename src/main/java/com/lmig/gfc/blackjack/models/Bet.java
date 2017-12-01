@@ -2,14 +2,14 @@ package com.lmig.gfc.blackjack.models;
 
 public class Bet {
 
-	private int bet; 
+	private int amount; 
 	
-	public Bet(int bet) {
-	this.bet = bet;
+	public Bet(int amount) {
+		this.amount = amount;
 	}
 		
-	public int getBet() {
-		return bet;
+	public int getAmount() {
+		return amount;
 	}
 	
 }

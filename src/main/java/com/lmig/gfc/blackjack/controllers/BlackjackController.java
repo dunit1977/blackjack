@@ -16,7 +16,6 @@ import com.lmig.gfc.blackjack.models.Wallet;
 @Controller
 public class BlackjackController {
 
-	private Wallet wallet;
 	
 	public BlackjackController() {
 		game = new Game();
@@ -28,7 +27,7 @@ public class BlackjackController {
 	@GetMapping("/")
 	public ModelAndView showBetScreen() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject( "wallet", wallet );
+		mv.addObject( "game", game);
 		mv.setViewName("blackjackui");
 
 		return mv;
@@ -36,11 +35,17 @@ public class BlackjackController {
 
 	@PostMapping("/bet")
 	public ModelAndView handleBet(int bet) {
-		// game.makePlayerBet(bet);
+		game.makePlayerBet(bet);
 		game.deal();
+		
+
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/play");
-		mv.addObject(game);
+		if (game.isPlayerBlackJack() || game.isDealerBlackJack()) {
+			// game.calculatePayout();
+			mv.setViewName("redirect:/over");
+		} else {
+			mv.setViewName("redirect:/play");
+		}
 		return mv;
 	}
 
@@ -48,6 +53,15 @@ public class BlackjackController {
 	public ModelAndView showPlayScreen() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("play");
+		mv.addObject("game", game);
+
+		return mv;
+	}
+
+	@GetMapping("/summary")
+	public ModelAndView showSummary() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("summary");
 		mv.addObject("game", game);
 
 		return mv;
@@ -65,17 +79,12 @@ public class BlackjackController {
 	@PostMapping("/stand")
 	public ModelAndView playerStand() {
 		game.hitDealerUntilDone();
+		game.makePayout();
+		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/play");
+		mv.setViewName("redirect:/summary");
 		mv.addObject(game);
 		return mv;
-	}
-	
-	
-	
-	public void initGame() {
-		wallet = new Wallet(100);
-
 	}
 	
 }

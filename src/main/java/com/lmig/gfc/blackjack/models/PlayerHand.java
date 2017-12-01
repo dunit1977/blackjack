@@ -29,4 +29,8 @@ public class PlayerHand {
 		return sum;
 	}
 
+	public int numberOfCards() {
+		return cards.size();
+	}
+
 }

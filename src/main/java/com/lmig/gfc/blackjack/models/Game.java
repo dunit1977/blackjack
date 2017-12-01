@@ -7,39 +7,34 @@ public class Game {
 	private Deck decker;
 	private PlayerHand playah;
 	private DealerHand dealah;
+	private Wallet wallet;
+	private Bet currentBet;
 
 	public Game() {
 		super();
 		this.decker = new Deck();
 		this.playah = new PlayerHand();
 		this.dealah = new DealerHand();
+		this.wallet = new Wallet(100);
 	}
 
 	public void deal() {
-		// Card card = decker.draw();
+		// make sure that every time you deal that you
+		// refresh the players' hands.
 		playah.accept(decker.draw());
-		// Card secondcard = decker.draw();
 		playah.accept(decker.draw());
-		// Card thirdcard = decker.draw();
 		dealah.accept(decker.draw());
-		// Card fourthcard = decker.draw();
 		dealah.accept(decker.draw());
-
 	}
 
 	public void hit() {
 		playah.accept(decker.draw());
 	}
-	// draw one card at a time
-	// remove card from dec add card to player hand
-	// remove card from dec add card to dealer hand
 
-	
-	
 	public void stand() {
 		dealah.accept(decker.draw());
 	}
-		
+
 	public Deck getDecker() {
 		return decker;
 	}
@@ -48,15 +43,75 @@ public class Game {
 		return playah;
 	}
 
-	public void hitDealerUntilDone() {
-		// method is pre-empted if player didn't bust || or player has blackjack
-//		dealer must hit if dealer hand is 17<= || if they have blackjack
-		//dealer will stop if dealer hand exceeds 21.
-		
+	public boolean isPlayerBusted() {
+		return playah.getTotal() > 21;
 	}
 
-//	public DealerHand getDealah() {
-//		return dealah;
-//	}
+	public boolean isPlayerBlackJack() {
+		return (playah.getTotal() == 21 && playah.numberOfCards() == 2);
+	}
+
+	public boolean isPlayerTwenyOne() {
+		return (playah.getTotal() == 21 && playah.numberOfCards() > 2);
+	}
+
+	public boolean isDealerBusted() {
+		return dealah.getTotal() > 21;
+	}
+
+	public boolean isDealerBlackJack() {
+		return (dealah.getTotal() == 21 && dealah.numberOfCards() == 2);
+	}
+
+	public boolean isDealerTwenyOne() {
+		return (dealah.getTotal() == 21 && dealah.numberOfCards() > 2);
+	}
+
+	public boolean isPlayerWinner() {
+		// if the dealer is busted -> true
+		if (isDealerBusted()) {
+			return true;
+		}
+
+		// if the player has blackjack and the dealer does not have blackjack -> true
+		if (isPlayerBlackJack() && !isDealerBlackJack()) {
+			return true;
+		}
+
+		// if the player is not busted and has more then the dealer -> true
+		if (!isPlayerBusted() && playah.getTotal() > dealah.getTotal()) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isPush() {
+		return playah.getTotal() == dealah.getTotal();
+	}
+
+	// public boolean betPayout() {
+	// if isPlayerWinner("false")
+	// return
+	//
+	// }
+
+	public void hitDealerUntilDone() {
+		while (dealah.getTotal() <= 16) {
+			dealah.accept(decker.draw());
+		}
+	}
+
+	public void makePlayerBet(int bet) {
+		wallet.minusBet(bet);
+		currentBet = new Bet(bet);
+	}
+
+	public void makePayout() {
+		if (isPlayerBlackJack() && !isDealerBlackJack()) {
+			wallet.blackJackPayout(currentBet.getAmount());
+		} else if (isPlayerWinner()) {
+			wallet.regularwinPayout(currentBet.getAmount());
+		}
+	}
 
 }
