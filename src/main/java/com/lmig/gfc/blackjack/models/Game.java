@@ -86,6 +86,8 @@ public class Game {
 		return false;
 	}
 
+	
+	
 	public boolean isPush() {
 		return playah.getTotal() == dealah.getTotal();
 	}
@@ -97,7 +99,7 @@ public class Game {
 	// }
 
 	public void hitDealerUntilDone() {
-		while (dealah.getTotal() <= 16) {
+		while (dealah.getTotal() <= 16 && !isPlayerBusted() ) {
 			dealah.accept(decker.draw());
 		}
 	}
@@ -119,6 +121,7 @@ public class Game {
 		return decker.countCards();
 	}
 	
+	
 
 	public void startNewHand() {
 		playah.clearHand();
@@ -138,3 +141,4 @@ public class Game {
 		return wallet.isEmpty();
 	}
 }
+

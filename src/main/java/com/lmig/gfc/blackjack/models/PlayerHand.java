@@ -25,6 +25,23 @@ public class PlayerHand {
 		int sum = 0;
 		for (Card card : cards) {
 			sum += card.getValue();
+
+		}
+
+		if (sum > 21) {
+
+			for (Card card : cards) {
+				if (card.getFace().equals("A")) {
+					sum -= 10;
+					if (sum < 21) {
+						break;
+
+					}
+
+				}
+
+
+			}
 		}
 		return sum;
 	}
@@ -35,7 +52,8 @@ public class PlayerHand {
 
 	public void clearHand() {
 		cards.clear();
-		
+
 	}
 
 }
+

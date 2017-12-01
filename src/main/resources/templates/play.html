@@ -22,21 +22,15 @@
 <div>{{ face }} of {{ suit }}</div> 
 {{/game.dealah.cards.0}} 
 
- 
+{{^game.isPlayerBusted}} 
 <form method="post" action="/hit"> 
 <button>Hit me</button> 
 </form> 
+{{/game.isPlayerBusted}}
+
+
 <form method="post" action="/stand"> 
 <button>I'm good</button> 
-
-
-
-
-
-
-
-
-
 </form> 
 </body> 
 </html> 

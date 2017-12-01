@@ -7,10 +7,13 @@
 <body>
 <div>Is player winner?{{game.isPlayerWinner}}</div>
 <div>Current Remaining Wallet Amount: ${{ game.wallet.dollars }}</div>
+
+{{^game.isWalletEmpty}} 
 <form method="post" action="/bet">
     <input required autofocus type="number" name="bet">
     <button>Re-Bet</button>
     </form>
+{{/game.isWalletEmpty}} 
     
     <h1>Hand Summary</h1>
    <h2>Player hand</h2> 

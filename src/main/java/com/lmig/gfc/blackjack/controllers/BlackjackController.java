@@ -48,13 +48,13 @@ public class BlackjackController {
 		}
 		return mv;
 	}
-
-	@GetMapping("/play")
+	
+		@GetMapping("/play")
 	public ModelAndView showPlayScreen() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("play");
 		mv.addObject("game", game);
-
+//		mv.addObject("showHitButton", !game.isPlayerBusted() || !game.isPlayerBlackJack());
 		return mv;
 	}
 
