@@ -8,7 +8,7 @@ public class Wallet {
 		this.dollars = wallet;
 	}
 	
-	public boolean isWalletEmpty() {
+	public boolean isEmpty() {
 		if(dollars == 0) {
 			return true;
 		}

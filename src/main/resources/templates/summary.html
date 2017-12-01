@@ -5,11 +5,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>{{game.isPlayerWinner}}</div>
-
+<div>Is player winner?{{game.isPlayerWinner}}</div>
+<div>Current Remaining Wallet Amount: ${{ game.wallet.dollars }}</div>
 <form method="post" action="/bet">
     <input required autofocus type="number" name="bet">
-    <button>Place bet G!</button>
+    <button>Re-Bet</button>
     </form>
+    
+    <h1>Hand Summary</h1>
+   <h2>Player hand</h2> 
+{{#game.playah.cards}} 
+<div>{{ face }} of {{ suit }}</div>
+{{/game.playah.cards}} 
+
+<h2>Dealer hand</h2> 
+{{#game.dealah.cards}} 
+<div>{{ face }} of {{ suit }}</div> 
+{{/game.dealah.cards}}
+
+<h2>Cards Remaining in Deck {{ game.getNumberCards }} </h2>     
+
+{{#game.isDeckEmpty}} 
+<h1>There are not enough cards remaining to play. Move along.</h1> 
+{{/game.isDeckEmpty}}
+      
+{{#game.isWalletEmpty}} 
+<h1>You are out of money. Go to the ATM or Move Along!.</h1> 
+{{/game.isWalletEmpty}}      
+      
 </body>
 </html>

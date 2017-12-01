@@ -31,4 +31,9 @@ public class Deck {
 	public Card hit() {
 		return cards.remove(0);
 	}
+	
+	public int countCards() {
+		return cards.size();
+	}
+	
 }

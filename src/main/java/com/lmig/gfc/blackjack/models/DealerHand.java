@@ -31,6 +31,11 @@ public class DealerHand {
 	public int numberOfCards() {
 		return cards.size();
 	}
+
+	public void clearHand() {
+		cards.clear();
+		
+	}
 	
 }
 

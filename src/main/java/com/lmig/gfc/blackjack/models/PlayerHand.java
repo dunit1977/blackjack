@@ -33,4 +33,9 @@ public class PlayerHand {
 		return cards.size();
 	}
 
+	public void clearHand() {
+		cards.clear();
+		
+	}
+
 }

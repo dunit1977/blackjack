@@ -36,12 +36,12 @@ public class BlackjackController {
 	@PostMapping("/bet")
 	public ModelAndView handleBet(int bet) {
 		game.makePlayerBet(bet);
+		game.startNewHand();
 		game.deal();
 		
 
 		ModelAndView mv = new ModelAndView();
 		if (game.isPlayerBlackJack() || game.isDealerBlackJack()) {
-			// game.calculatePayout();
 			mv.setViewName("redirect:/over");
 		} else {
 			mv.setViewName("redirect:/play");
@@ -88,3 +88,4 @@ public class BlackjackController {
 	}
 	
 }
+

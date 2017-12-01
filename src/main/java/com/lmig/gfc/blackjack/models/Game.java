@@ -68,6 +68,7 @@ public class Game {
 	}
 
 	public boolean isPlayerWinner() {
+
 		// if the dealer is busted -> true
 		if (isDealerBusted()) {
 			return true;
@@ -114,4 +115,26 @@ public class Game {
 		}
 	}
 
+	public int getNumberCards() {
+		return decker.countCards();
+	}
+	
+
+	public void startNewHand() {
+		playah.clearHand();
+		dealah.clearHand();
+
+	}
+
+	public boolean isDeckEmpty() {
+		if (getNumberCards() <= 5) {
+		return true;
+		}
+		return false;	
+		
+	}
+	
+	public boolean isWalletEmpty() {
+		return wallet.isEmpty();
+	}
 }
