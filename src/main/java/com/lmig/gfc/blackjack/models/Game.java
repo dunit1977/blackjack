@@ -70,34 +70,28 @@ public class Game {
 	public boolean isPlayerWinner() {
 
 		// if the dealer is busted -> true
-		if (isDealerBusted()) {
+		if (isDealerBusted() && !isPlayerBusted()) {
 			return true;
 		}
 
 		// if the player has blackjack and the dealer does not have blackjack -> true
-		if (isPlayerBlackJack() && !isDealerBlackJack()) {
+		if (!isDealerBlackJack() && isPlayerBlackJack()) {
 			return true;
 		}
 
 		// if the player is not busted and has more then the dealer -> true
-		if (!isPlayerBusted() && playah.getTotal() > dealah.getTotal()) {
+		if (!isPlayerBusted() && !isDealerBusted() && playah.getTotal() > dealah.getTotal()) {
 			return true;
 		}
 		return false;
 	}
-		
-	public boolean isPush() {
-		return 	(playah.getTotal() == dealah.getTotal()); 
-		}
 
-	// public boolean betPayout() {
-	// if isPlayerWinner("false")
-	// return
-	//
-	// }
+	public boolean isPush() {
+		return (playah.getTotal() == dealah.getTotal());
+	}
 
 	public void hitDealerUntilDone() {
-		while (dealah.getTotal() <= 16 && !isPlayerBusted() ) {
+		while (dealah.getTotal() <= 16 && !isPlayerBusted()) {
 			dealah.accept(decker.draw());
 		}
 	}
@@ -118,8 +112,6 @@ public class Game {
 	public int getNumberCards() {
 		return decker.countCards();
 	}
-	
-	
 
 	public void startNewHand() {
 		playah.clearHand();
@@ -129,14 +121,13 @@ public class Game {
 
 	public boolean isDeckEmpty() {
 		if (getNumberCards() <= 5) {
-		return true;
+			return true;
 		}
-		return false;	
-		
+		return false;
+
 	}
-	
+
 	public boolean isWalletEmpty() {
 		return wallet.isEmpty();
 	}
 }
-

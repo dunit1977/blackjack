@@ -36,9 +36,13 @@
 {{#game.isPlayerWinner}}
 <h3>Congratulations. You won.</h3>
 {{/game.isPlayerWinner}}
+
+{{^game.isPush}}
 {{^game.isPlayerWinner}}
 <h3>Better luck next time. You lost</h3>
 {{/game.isPlayerWinner}}
+{{/game.isPush}}
+
 {{#game.isPush}}
 <h3>You tied. Lame!</h3>
 {{/game.isPush}}
