@@ -85,12 +85,10 @@ public class Game {
 		}
 		return false;
 	}
-
-	
-	
+		
 	public boolean isPush() {
-		return playah.getTotal() == dealah.getTotal();
-	}
+		return 	(playah.getTotal() == dealah.getTotal()); 
+		}
 
 	// public boolean betPayout() {
 	// if isPlayerWinner("false")

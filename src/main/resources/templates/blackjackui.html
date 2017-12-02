@@ -8,10 +8,11 @@
 <body>
 <h1>Blackjack</h1>
 
-<div>{{ game.wallet.dollars}}</div>
+
+<div>Available for betting: ${{ game.wallet.dollars}}</div>
 <form method="post" action="/bet">
     <input required autofocus type="number" name="bet">
-    <button>Place bet G!</button>
+    <button>Place bet </button>
     </form>
 
 {{#hand.cards}}

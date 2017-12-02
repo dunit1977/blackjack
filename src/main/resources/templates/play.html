@@ -5,32 +5,37 @@
 <title>Play Your Hand</title> 
 </head> 
 <body> 
-
- 
 <h1>Blackjack</h1> 
-
 <div>You have ${{ game.wallet.dollars }}</div>
-<div>The current bet is ${{ game.currentBet.amount }}</div>
- 
+<div>Current bet is ${{ game.currentBet.amount }}</div>
+<br>
 <h2>Player hand</h2> 
 {{#game.playah.cards}} 
 <div>{{ face }} of {{ suit }}</div>
 {{/game.playah.cards}} 
-
+<h3> Hand value: {{game.playah.getTotal}} </h3>
+<br>
 <h2>Dealer hand</h2> 
 {{#game.dealah.cards.0}} 
-<div>{{ face }} of {{ suit }}</div> 
+<div>{{ face }} of {{ suit }}</div>
+ <div>Card #2</div>
 {{/game.dealah.cards.0}} 
-
+<br>
+<br>
 {{^game.isPlayerBusted}} 
 <form method="post" action="/hit"> 
-<button>Hit me</button> 
+<button>Player Hit</button> 
 </form> 
 {{/game.isPlayerBusted}}
+{{#game.isPlayerBusted}} 
+<h1>Busted. This may not be the game for you.</h1>
+{{/game.isPlayerBusted}}
+{{#game.isPlayerBlackjack}} 
+<h1>Congratulations. You nailed the Blackjack.</h1>
 
-
+{{/game.isPlayerBlackjack}}
 <form method="post" action="/stand"> 
-<button>I'm good</button> 
+<button>Dealer Move</button> 
 </form> 
 </body> 
 </html> 

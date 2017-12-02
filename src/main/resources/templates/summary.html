@@ -5,9 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>Is player winner?{{game.isPlayerWinner}}</div>
 <div>Current Remaining Wallet Amount: ${{ game.wallet.dollars }}</div>
-
 {{^game.isWalletEmpty}} 
 <form method="post" action="/bet">
     <input required autofocus type="number" name="bet">
@@ -15,26 +13,47 @@
     </form>
 {{/game.isWalletEmpty}} 
     
-    <h1>Hand Summary</h1>
-   <h2>Player hand</h2> 
+<h2>Summary</h2>
+<h2>Player hand</h2> 
 {{#game.playah.cards}} 
 <div>{{ face }} of {{ suit }}</div>
 {{/game.playah.cards}} 
+<h3> Hand value: {{game.playah.getTotal}} </h3> 
+
 
 <h2>Dealer hand</h2> 
 {{#game.dealah.cards}} 
 <div>{{ face }} of {{ suit }}</div> 
 {{/game.dealah.cards}}
-
-<h2>Cards Remaining in Deck {{ game.getNumberCards }} </h2>     
+<h3> Hand value: {{game.dealah.getTotal}} </h3>
 
 {{#game.isDeckEmpty}} 
-<h1>There are not enough cards remaining to play. Move along.</h1> 
+<h3>There are not enough cards remaining to play. Move along.</h3> 
 {{/game.isDeckEmpty}}
-      
 {{#game.isWalletEmpty}} 
-<h1>You are out of money. Go to the ATM or Move Along!.</h1> 
+<h3>You are out of money. Move along.</h3> 
 {{/game.isWalletEmpty}}      
-      
+{{#game.isPlayerWinner}}
+<h3>Congratulations. You won.</h3>
+{{/game.isPlayerWinner}}
+{{^game.isPlayerWinner}}
+<h3>Better luck next time. You lost</h3>
+{{/game.isPlayerWinner}}
+{{#game.isPush}}
+<h3>You tied. Lame!</h3>
+{{/game.isPush}}
+
+<div>
+<form method="post" action="/newplayer">
+    <button>New Player</button>
+    </form>
+</div>
+<br>
+<br>
+<br>
+<br>
+<h4>Cards Remaining in Deck {{ game.getNumberCards }} </h4>
+
+
 </body>
 </html>

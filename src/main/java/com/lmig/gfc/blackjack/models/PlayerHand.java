@@ -31,7 +31,8 @@ public class PlayerHand {
 		if (sum > 21) {
 
 			for (Card card : cards) {
-				if (card.getFace().equals("A")) {
+//				if (card.getFace().equals("A")) {
+				if (card instanceof AceCard) {
 					sum -= 10;
 					if (sum < 21) {
 						break;

@@ -24,6 +24,23 @@ public class DealerHand {
 		int sum = 0;
 		for (Card card : cards) {
 			sum += card.getValue();
+
+		}
+
+		if (sum > 21) {
+
+			for (Card card : cards) {
+				if (card instanceof AceCard) {
+					sum -= 10;
+					if (sum < 21) {
+						break;
+
+					}
+
+				}
+
+
+			}
 		}
 		return sum;
 	}
