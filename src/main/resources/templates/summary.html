@@ -2,10 +2,11 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Ice Cube Plays Blackjack (a real G's Game)</title>
+<link rel="stylesheet" href= "/blackjacksyle.css">
 </head>
 <body>
-<div>Current Remaining Wallet Amount: ${{ game.wallet.dollars }}</div>
+<div>Current Remaining Wallet Amount: $naps left ${{ game.wallet.dollars }}</div>
 {{^game.isWalletEmpty}} 
 <form method="post" action="/bet">
     <input required autofocus type="number" name="bet">
@@ -14,7 +15,7 @@
 {{/game.isWalletEmpty}} 
     
 <h2>Summary</h2>
-<h2>Player hand</h2> 
+<h2>Playah hand</h2> 
 {{#game.playah.cards}} 
 <div>{{ face }} of {{ suit }}</div>
 {{/game.playah.cards}} 
@@ -31,15 +32,15 @@
 <h3>There are not enough cards remaining to play. Move along.</h3> 
 {{/game.isDeckEmpty}}
 {{#game.isWalletEmpty}} 
-<h3>You are out of money. Move along.</h3> 
+<h3>You are out of $naps. Head out to Jack in the crack!</h3> 
 {{/game.isWalletEmpty}}      
 {{#game.isPlayerWinner}}
-<h3>Congratulations. You won.</h3>
+<h3>Congratulations. You manned up and won G!</h3>
 {{/game.isPlayerWinner}}
 
 {{^game.isPush}}
 {{^game.isPlayerWinner}}
-<h3>Better luck next time. You lost</h3>
+<h3>Better luck next time. You lost sucka!</h3>
 {{/game.isPlayerWinner}}
 {{/game.isPush}}
 
@@ -49,7 +50,7 @@
 
 <div>
 <form method="post" action="/newplayer">
-    <button>New Player</button>
+    <button>New Playah</button>
     </form>
 </div>
 <br>
